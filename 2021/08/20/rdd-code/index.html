@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, 文韬de博客">
+    <meta name="keywords" content="Local模式下RDD编程, 文韬de博客">
     <meta name="description" content="张家界学院 | 软件工程">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hello World | 文韬de博客</title>
+    <title>Local模式下RDD编程 | 文韬de博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -311,12 +311,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/banner/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hello World</h1>
+                    <h1 class="description center-align post-title">Local模式下RDD编程</h1>
                 </div>
             </div>
         </div>
@@ -431,12 +431,25 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/spark/">
+                                <span class="chip bg-color">spark</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="post-category">
+                                大数据
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -445,28 +458,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2021-08-20
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-30
+                    2021-09-16
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    105
+                    1.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    6 分
                 </div>
                 
 
@@ -481,15 +494,155 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>历时两周终于将个人主页搭建好了，具体详细教程有时间再详细整理整理单独发出来，至于这篇，写过程序的都知道hello world 是什么意思哈哈哈哈，作为留念就不删掉了。</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+                <h2 id="1-RDD编程"><a href="#1-RDD编程" class="headerlink" title="1 RDD编程"></a>1 RDD编程</h2><h3 id="1-1编程模型"><a href="#1-1编程模型" class="headerlink" title="1.1编程模型"></a>1.1编程模型</h3><p>在Spark中，RDD被表示为对象，通过对象上的方法调用来对RDD进行转换。<br>经过一系列的<b>transformations定义RDD之后，就可以调用actions触发RDD的计算</b>，<br>action可以是向应用程序返回结果(count, collect等)， 或者是向存储系统保存数据(saveAsTextFile等)。<br>在Spark中，<b>只有遇到action，才会执行RDD的计算(即延迟计算)</b>，这样在运行时可以通过管道的方式输多个转换。<br><br/><br><img src="https://taogege.xyz/medias/pic_data/09/02_01.png"/></p>
+<h3 id="1-2-RDD创建"><a href="#1-2-RDD创建" class="headerlink" title="1.2 RDD创建"></a>1.2 RDD创建</h3><p><b>在spark中RDD创建可以分为三种：从集合中创建RDD、从外部存储创建RDD、从其他RDD创建。</b></p>
+<h3 id="1-2-1-Idea环境搭建"><a href="#1-2-1-Idea环境搭建" class="headerlink" title="1.2.1 Idea环境搭建"></a>1.2.1 Idea环境搭建</h3><p>1.创建maven工程。<br/><br>2.在pom文件中添加</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token operator">&lt;</span>dependencies<span class="token operator">></span>
+    <span class="token operator">&lt;</span>dependency<span class="token operator">></span>
+        <span class="token operator">&lt;</span>groupId<span class="token operator">></span>org.apache.spark<span class="token operator">&lt;</span>/groupId<span class="token operator">></span>
+        <span class="token operator">&lt;</span>artifactId<span class="token operator">></span>spark-core_2.12<span class="token operator">&lt;</span>/artifactId<span class="token operator">></span>
+        <span class="token operator">&lt;</span>version<span class="token operator">></span>3.0.0<span class="token operator">&lt;</span>/version<span class="token operator">></span>
+    <span class="token operator">&lt;</span>/dependency<span class="token operator">></span>
+<span class="token operator">&lt;</span>/dependencies<span class="token operator">></span>
+<span class="token operator">&lt;</span>build<span class="token operator">></span>
+    <span class="token operator">&lt;</span>finalName<span class="token operator">></span>SparkCoreTest<span class="token operator">&lt;</span>/finalName<span class="token operator">></span>
+    <span class="token operator">&lt;</span>plugins<span class="token operator">></span>
+        <span class="token operator">&lt;</span>plugin<span class="token operator">></span>
+            <span class="token operator">&lt;</span>groupId<span class="token operator">></span>net.alchim31.maven<span class="token operator">&lt;</span>/groupId<span class="token operator">></span>
+            <span class="token operator">&lt;</span>artifactId<span class="token operator">></span>scala-maven-plugin<span class="token operator">&lt;</span>/artifactId<span class="token operator">></span>
+            <span class="token operator">&lt;</span>version<span class="token operator">></span>3.4.6<span class="token operator">&lt;</span>/version<span class="token operator">></span>
+            <span class="token operator">&lt;</span>executions<span class="token operator">></span>
+                <span class="token operator">&lt;</span>execution<span class="token operator">></span>
+                    <span class="token operator">&lt;</span>goals<span class="token operator">></span>
+                        <span class="token operator">&lt;</span>goal<span class="token operator">></span>compile<span class="token operator">&lt;</span>/goal<span class="token operator">></span>
+                        <span class="token operator">&lt;</span>goal<span class="token operator">></span>testCompile<span class="token operator">&lt;</span>/goal<span class="token operator">></span>
+                    <span class="token operator">&lt;</span>/goals<span class="token operator">></span>
+                <span class="token operator">&lt;</span>/execution<span class="token operator">></span>
+            <span class="token operator">&lt;</span>/executions<span class="token operator">></span>
+        <span class="token operator">&lt;</span>/plugin<span class="token operator">></span>
+    <span class="token operator">&lt;</span>/plugins<span class="token operator">></span>
+<span class="token operator">&lt;</span>/build<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>3.搭建Scala框架支持</p>
+<h3 id="1-2-2-从集合中创建"><a href="#1-2-2-从集合中创建" class="headerlink" title="1.2.2 从集合中创建"></a>1.2.2 从集合中创建</h3><p>1：从集合中创建RDD，Spark主要提供了两种函数：parallelize和makeRDD<br>parallelize</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">import</span> org.apache.spark.rdd.RDD
+<span class="token function">import</span> org.apache.spark.<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;SparkConf, SparkContext&amp;#125;</span>
+object createrdd01_array <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+    def main<span class="token punctuation">(</span>args: Array<span class="token punctuation">[</span>String<span class="token punctuation">]</span><span class="token punctuation">)</span>: Unit <span class="token operator">=</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+        //1.创建SparkConf并设置App名称
+        val conf: SparkConf <span class="token operator">=</span> new SparkConf<span class="token punctuation">(</span><span class="token punctuation">)</span>.setAppName<span class="token punctuation">(</span><span class="token string">"SparkCoreTest"</span><span class="token punctuation">)</span>.setMaster<span class="token punctuation">(</span><span class="token string">"local[*]"</span><span class="token punctuation">)</span>
+        //2.创建SparkContext，该对象是提交Spark App的入口
+        val sc: SparkContext <span class="token operator">=</span> new SparkContext<span class="token punctuation">(</span>conf<span class="token punctuation">)</span>
+        //3.使用parallelize<span class="token punctuation">(</span><span class="token punctuation">)</span>创建rdd
+        val rdd: RDD<span class="token punctuation">[</span>Int<span class="token punctuation">]</span> <span class="token operator">=</span> sc.parallelize<span class="token punctuation">(</span>Array<span class="token punctuation">(</span>1, 2, 3, 4, 5, 6, 7, 8<span class="token punctuation">))</span>
+        rdd.foreach<span class="token punctuation">(</span>println<span class="token punctuation">)</span>
+        println<span class="token punctuation">(</span><span class="token string">"分区数："</span> + rdd.partitions.size<span class="token punctuation">)</span>
+        //4.使用makeRDD<span class="token punctuation">(</span><span class="token punctuation">)</span>创建rdd
+        val rdd1: RDD<span class="token punctuation">[</span>Int<span class="token punctuation">]</span> <span class="token operator">=</span> sc.makeRDD<span class="token punctuation">(</span>Array<span class="token punctuation">(</span>1, 2, 3, 4, 5, 6, 7, 8<span class="token punctuation">))</span>
+        rdd1.foreach<span class="token punctuation">(</span>println<span class="token punctuation">)</span>
+        println<span class="token punctuation">(</span><span class="token string">"分区数："</span> + rdd1.partitions.size<span class="token punctuation">)</span>
+        sc.stop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
+<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="1-2-3-从外部存储系统的数据集创建"><a href="#1-2-3-从外部存储系统的数据集创建" class="headerlink" title="1.2.3 从外部存储系统的数据集创建"></a>1.2.3 从外部存储系统的数据集创建</h3><p>由外部存储系统的数据集创建RDD包括：<b>本地的文件系统，所有hadoop支持的数据集，如HDFS，HBASE等。</b></p>
+<p>1.数据准备<br><br>在项目目录下创建inout文件用来放模拟外部存储的数据<br><br>2.创建RDD</p>
+<pre class="line-numbers language-bash"><code class="language-bash">        //1.创建SparkConf并设置App名称
+        val conf: SparkConf <span class="token operator">=</span> new SparkConf<span class="token punctuation">(</span><span class="token punctuation">)</span>.setAppName<span class="token punctuation">(</span><span class="token string">"SparkCoreTest"</span><span class="token punctuation">)</span>.setMaster<span class="token punctuation">(</span><span class="token string">"local[*]"</span><span class="token punctuation">)</span>
+        //2.创建SparkContext，该对象是提交Spark App的入口
+        val sc: SparkContext <span class="token operator">=</span> new SparkContext<span class="token punctuation">(</span>conf<span class="token punctuation">)</span>
+        //3.读取文件。如果是集群路径：hdfs://hadoop102:9000/input
+        val lineWordRdd: RDD<span class="token punctuation">[</span>String<span class="token punctuation">]</span> <span class="token operator">=</span> sc.textFile<span class="token punctuation">(</span><span class="token string">"input"</span><span class="token punctuation">)</span>
+        //4.打印
+        lineWordRdd.foreach<span class="token punctuation">(</span>println<span class="token punctuation">)</span>
+        //5.关闭
+        sc.stop<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="1-3-Transformation转换算子-重点"><a href="#1-3-Transformation转换算子-重点" class="headerlink" title="1.3 Transformation转换算子(重点)"></a>1.3 Transformation转换算子(重点)</h2><p><b>RDD整体上分为Value类型、双Value类型和Key-Value类型</b></p>
+<h3 id="1-3-1Value类型"><a href="#1-3-1Value类型" class="headerlink" title="1.3.1Value类型"></a>1.3.1Value类型</h3><h4 id="1-map-映射"><a href="#1-map-映射" class="headerlink" title="1.map()映射"></a>1.map()映射</h4><blockquote>
+<p>函数签名：def map [U:ClassTag]  (f:T=&gt;U):RDD[U]</p>
+</blockquote>
+<p>具体实现</p>
+<pre class="line-numbers language-bash"><code class="language-bash">        //1.创建SparkConf并设置App名称
+        val conf <span class="token operator">=</span> new SparkConf<span class="token punctuation">(</span><span class="token punctuation">)</span>.setAppName<span class="token punctuation">(</span><span class="token string">"SparkCoreTest"</span><span class="token punctuation">)</span>.setMaster<span class="token punctuation">(</span><span class="token string">"local[*]"</span><span class="token punctuation">)</span>
+        //2.创建SparkContext，该对象是提交Spark App的入口
+        val sc <span class="token operator">=</span> new SparkContext<span class="token punctuation">(</span>conf<span class="token punctuation">)</span>
+        //3具体业务逻辑
+        // 3.1 创建一个RDD
+        val rdd: RDD<span class="token punctuation">[</span>Int<span class="token punctuation">]</span> <span class="token operator">=</span> sc.makeRDD<span class="token punctuation">(</span>1 to 4,2<span class="token punctuation">)</span>
+        // 3.2 调用map方法，每个元素乘以2
+        val mapRdd: RDD<span class="token punctuation">[</span>Int<span class="token punctuation">]</span> <span class="token operator">=</span> rdd.map<span class="token punctuation">(</span>_ * 2<span class="token punctuation">)</span>
+        // 3.3 打印修改后的RDD中数据
+        mapRdd.collect<span class="token punctuation">(</span><span class="token punctuation">)</span>.foreach<span class="token punctuation">(</span>println<span class="token punctuation">)</span>
+        //4.关闭连接
+        sc.stop<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>输出结果：2 4 6 8</p>
+</blockquote>
+<h4 id="2-mapPartitions-以分区为单位执行Map"><a href="#2-mapPartitions-以分区为单位执行Map" class="headerlink" title="2.mapPartitions()以分区为单位执行Map"></a>2.mapPartitions()以分区为单位执行Map</h4><blockquote>
+<p>函数签名：def mapPartitions[U:ClassTag] (f:leterator[T]=&gt;lterator[U]) </p>
+</blockquote>
+<p>具体实现</p>
+<pre class="line-numbers language-bash"><code class="language-bash">        //1.创建SparkConf并设置App名称
+        val conf <span class="token operator">=</span> new SparkConf<span class="token punctuation">(</span><span class="token punctuation">)</span>.setAppName<span class="token punctuation">(</span><span class="token string">"SparkCoreTest"</span><span class="token punctuation">)</span>.setMaster<span class="token punctuation">(</span><span class="token string">"local[*]"</span><span class="token punctuation">)</span>
+        //2.创建SparkContext，该对象是提交Spark App的入口
+        val sc <span class="token operator">=</span> new SparkContext<span class="token punctuation">(</span>conf<span class="token punctuation">)</span>
+        //3具体业务逻辑
+        // 3.1 创建一个RDD
+        val rdd: RDD<span class="token punctuation">[</span>Int<span class="token punctuation">]</span> <span class="token operator">=</span> sc.makeRDD<span class="token punctuation">(</span>1 to 4, 2<span class="token punctuation">)</span>
+        // 3.2 调用mapPartitions方法，每个元素乘以2
+        val rdd1 <span class="token operator">=</span> rdd.mapPartitions<span class="token punctuation">(</span>x<span class="token operator">=</span><span class="token operator">></span>x.map<span class="token punctuation">(</span>_*2<span class="token punctuation">))</span>
+        // 3.3 打印修改后的RDD中数据
+        rdd1.collect<span class="token punctuation">(</span><span class="token punctuation">)</span>.foreach<span class="token punctuation">(</span>println<span class="token punctuation">)</span>
+        //4.关闭连接
+        sc.stop<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><b>ps:map()和mapPartitions()区别:map()每次处理一条数据；<br>mapPartitions()每次处理一个分区的数据，当分区内数据处理完原RDD中分区的数据才能释放。<br></b></p>
+<h4 id="3-mapPartitionsWithIndex-带分区号"><a href="#3-mapPartitionsWithIndex-带分区号" class="headerlink" title="3.mapPartitionsWithIndex()带分区号"></a>3.mapPartitionsWithIndex()带分区号</h4><blockquote>
+<p>函数签名：def mapPartitionsWithIndex [U:ClassTag] f:(Int,Iterator[T])=&gt;lterator[U],preservesPartitioning:Boolean = false):RDD[U]</p>
+</blockquote>
+<p>具体实现</p>
+<pre class="line-numbers language-bash"><code class="language-bash">        //1.创建SparkConf并设置App名称
+        val conf <span class="token operator">=</span> new SparkConf<span class="token punctuation">(</span><span class="token punctuation">)</span>.setAppName<span class="token punctuation">(</span><span class="token string">"SparkCoreTest"</span><span class="token punctuation">)</span>.setMaster<span class="token punctuation">(</span><span class="token string">"local[*]"</span><span class="token punctuation">)</span>
+        //2.创建SparkContext，该对象是提交Spark App的入口
+        val sc <span class="token operator">=</span> new SparkContext<span class="token punctuation">(</span>conf<span class="token punctuation">)</span>
+        //3具体业务逻辑
+        // 3.1 创建一个RDD
+        val rdd: RDD<span class="token punctuation">[</span>Int<span class="token punctuation">]</span> <span class="token operator">=</span> sc.makeRDD<span class="token punctuation">(</span>1 to 4, 2<span class="token punctuation">)</span>
+        // 3.2 创建一个RDD，使每个元素跟所在分区号形成一个元组，组成一个新的RDD
+        val indexRdd <span class="token operator">=</span> rdd.mapPartitionsWithIndex<span class="token punctuation">(</span> <span class="token punctuation">(</span>index,items<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;items.map( (index,_) )&amp;#125; )</span>
+        //扩展功能：第二个分区元素*2，其余分区不变
+// 3.3 打印修改后的RDD中数据
+        indexRdd.collect<span class="token punctuation">(</span><span class="token punctuation">)</span>.foreach<span class="token punctuation">(</span>println<span class="token punctuation">)</span>
+        //4.关闭连接
+        sc.stop<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="4-flatMap-压平"><a href="#4-flatMap-压平" class="headerlink" title="4.flatMap()压平"></a>4.flatMap()压平</h4><blockquote>
+<p>函数签名：def flatMap [U:ClassTag] (f:T=&gt;TraversableOnce [U] ):RDD[U]</p>
+</blockquote>
+<p>具体实现</p>
+<pre class="line-numbers language-bash"><code class="language-bash">        //1.创建SparkConf并设置App名称
+        val conf <span class="token operator">=</span> new SparkConf<span class="token punctuation">(</span><span class="token punctuation">)</span>.setAppName<span class="token punctuation">(</span><span class="token string">"SparkCoreTest"</span><span class="token punctuation">)</span>.setMaster<span class="token punctuation">(</span><span class="token string">"local[*]"</span><span class="token punctuation">)</span>
+        //2.创建SparkContext，该对象是提交Spark App的入口
+        val sc <span class="token operator">=</span> new SparkContext<span class="token punctuation">(</span>conf<span class="token punctuation">)</span>
+        //3具体业务逻辑
+        // 3.1 创建一个RDD
+        val listRDD<span class="token operator">=</span>sc.makeRDD<span class="token punctuation">(</span>List<span class="token punctuation">(</span>List<span class="token punctuation">(</span>1,2<span class="token punctuation">)</span>,List<span class="token punctuation">(</span>3,4<span class="token punctuation">)</span>,List<span class="token punctuation">(</span>5,6<span class="token punctuation">)</span>,List<span class="token punctuation">(</span>7<span class="token punctuation">))</span>, 2<span class="token punctuation">)</span>
+        // 3.2 把所有子集合中数据取出放入到一个大的集合中
+        listRDD.flatMap<span class="token punctuation">(</span>list<span class="token operator">=</span><span class="token operator">></span>list<span class="token punctuation">)</span>.collect.foreach<span class="token punctuation">(</span>println<span class="token punctuation">)</span>
+        //4.关闭连接
+        sc.stop<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="5-glom-分区转换数组"><a href="#5-glom-分区转换数组" class="headerlink" title="5.glom()分区转换数组"></a>5.glom()分区转换数组</h4><blockquote>
+<p>函数签名：def glom):RDD[Array[T]]</p>
+</blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash">        //1.创建SparkConf并设置App名称
+        val conf <span class="token operator">=</span> new SparkConf<span class="token punctuation">(</span><span class="token punctuation">)</span>.setAppName<span class="token punctuation">(</span><span class="token string">"SparkCoreTest"</span><span class="token punctuation">)</span>.setMaster<span class="token punctuation">(</span><span class="token string">"local[*]"</span><span class="token punctuation">)</span>
+        //2.创建SparkContext，该对象是提交Spark App的入口
+        val sc <span class="token operator">=</span> new SparkContext<span class="token punctuation">(</span>conf<span class="token punctuation">)</span>
+        //3具体业务逻辑
+        // 3.1 创建一个RDD
+        val rdd <span class="token operator">=</span> sc.makeRDD<span class="token punctuation">(</span>1 to 4, 2<span class="token punctuation">)</span>
+        // 3.2 求出每个分区的最大值  0-<span class="token operator">></span>1,2   1-<span class="token operator">></span>3,4
+        val maxRdd: RDD<span class="token punctuation">[</span>Int<span class="token punctuation">]</span> <span class="token operator">=</span> rdd.glom<span class="token punctuation">(</span><span class="token punctuation">)</span>.map<span class="token punctuation">(</span>_.max<span class="token punctuation">)</span>
+        // 3.3 求出所有分区的最大值的和 2 + 4
+        println<span class="token punctuation">(</span>maxRdd.collect<span class="token punctuation">(</span><span class="token punctuation">)</span>.sum<span class="token punctuation">)</span>
+        //4.关闭连接
+        sc.stop<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
             </div>
             <hr/>
@@ -505,7 +658,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="/about" rel="external nofollow noreferrer">Tennyno$</a>
+                    <a href="/about" rel="external nofollow noreferrer">文韬</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -515,7 +668,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://taogege.xyz/2020/11/12/hello-world/">http://taogege.xyz/2020/11/12/hello-world/</a>
+                    <a href="http://taogege.xyz/2021/08/20/rdd-code/">http://taogege.xyz/2021/08/20/rdd-code/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -528,7 +681,7 @@
                     本博客所有文章除特別声明外，均采用
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     许可协议。转载请注明来源
-                    <a href="/about" target="_blank">Tennyno$</a>
+                    <a href="/about" target="_blank">文韬</a>
                     !
                 </span>
             </div>
@@ -552,7 +705,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/spark/">
+                                    <span class="chip bg-color">spark</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -983,65 +1140,17 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
-            <div class="card">
-                <a href="/2020/11/30/python-zhuang-shi-qi/">
-                    <div class="card-image">
-                        
-                        <img src="/medias/banner/2.jpg" class="responsive-img" alt="Python抓取网站图片">
-                        
-                        <span class="card-title">Python抓取网站图片</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-30
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E7%88%AC%E8%99%AB/" class="post-category">
-                                    爬虫
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/python/">
-                        <span class="chip bg-color">python</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/2020/11/12/hello-world/">
+                <a href="/2021/08/20/rdd-code/">
                     <div class="card-image">
                         
+                        <img src="/medias/banner/0.jpg" class="responsive-img" alt="Local模式下RDD编程">
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
-                        
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">Local模式下RDD编程</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1052,17 +1161,77 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-12
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-20
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Tennyno$
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="post-category">
+                                    大数据
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/spark/">
+                        <span class="chip bg-color">spark</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/08/15/springboot-zhu-jie-da-quan/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/banner/4.jpg" class="responsive-img" alt="SpringBoot注解大全">
+                        
+                        <span class="card-title">SpringBoot注解大全</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Spring/" class="post-category">
+                                    Spring
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/SpringBoot/">
+                        <span class="chip bg-color">SpringBoot</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
